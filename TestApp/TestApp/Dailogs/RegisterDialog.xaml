@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame xmlns="http://xamarin.com/schemas/2014/forms"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="TestApp.Dailogs.RegisterDialog"
+      xmlns:prism="http://prismlibrary.com"
+      prism:ViewModelLocator.AutowireViewModel="True"
+      prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
+      HasShadow="false"
+      BackgroundColor="White">
+    <StackLayout>
+
+        <Label Text="Register" FontSize="Subtitle" HorizontalTextAlignment="Center"/>
+
+        <Label Text="Username"
+                />
+        <Entry Placeholder="Enter Username" Text="{Binding UserInfo.username}"/>
+        <Label Text="Password"
+                />
+        <Entry Placeholder="Enter password" Text="{Binding UserInfo.password}"/>
+        <Label Text="Confirm Password"
+                />
+        <Entry Placeholder="Re-Enter Password" Text="{Binding ConfirmPassword}"/>
+        <Label Text="Date of Birth"
+               />
+        <DatePicker Date="{Binding UserInfo.DOB}"/>
+        <Label Text="Address"
+                />
+        <Editor Placeholder="Enter Address" Text="{Binding UserInfo.Address}"/>
+        <Button Text="Submit"
+                Command="{Binding SubmitCommand}"
+                TextColor="White"
+                HorizontalOptions="FillAndExpand"
+                BackgroundColor="BlueViolet"/>
+   </StackLayout>
+</Frame>
