@@ -5,6 +5,7 @@
              x:Class="TestApp.Dailogs.AddLocationDialog"
        prism:ViewModelLocator.AutowireViewModel="True"
       prism:DialogLayout.RelativeWidthRequest="{OnIdiom Default=0.75, Desktop=0.5}"
+       prism:DialogLayout.CloseOnBackgroundTapped="True"
       HasShadow="false"
       BackgroundColor="White">
 
