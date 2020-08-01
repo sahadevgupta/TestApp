@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using KeyboardOverlap.Forms.Plugin.iOSUnified;
 using Prism;
 using Prism.Ioc;
 using UIKit;
@@ -23,6 +24,7 @@ namespace TestApp.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             Xamarin.FormsMaps.Init();
+            KeyboardOverlapRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
 
             return base.FinishedLaunching(app, options);

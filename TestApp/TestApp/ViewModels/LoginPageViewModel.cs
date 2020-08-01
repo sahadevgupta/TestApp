@@ -29,6 +29,7 @@ namespace TestApp.ViewModels
         }
 
         public DelegateCommand RegisterCommand { get; set; }
+        public DelegateCommand LoginCommand { get; set; }
 
         IPageDialogService _pageDialog;
         public LoginPageViewModel(INavigationService navigationService,IDialogService dialogService,IPageDialogService pageDialog ): base(navigationService)
@@ -38,6 +39,7 @@ namespace TestApp.ViewModels
             {
                 dialogService.ShowDialog("RegisterDialog", CloseDialogCallback);
             });
+            LoginCommand = new DelegateCommand(async () => await Login());
         }
 
         internal async Task Login()

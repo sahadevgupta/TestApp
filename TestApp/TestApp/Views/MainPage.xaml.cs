@@ -28,13 +28,40 @@ namespace TestApp.Views
         }
         private async void GetCurrentLocation()
         {
-           
-                CurrentLocation = await Geolocation.GetLastKnownLocationAsync();
+            var status = await Permissions.CheckStatusAsync<Permissions.LocationWhenInUse>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.LocationWhenInUse>();
+            }
 
-                MapSpan mapSpan = MapSpan.FromCenterAndRadius(new Position(CurrentLocation.Latitude, CurrentLocation.Longitude), Distance.FromKilometers(0.444));
-                map.MoveToRegion(mapSpan);
+            if (status == PermissionStatus.Granted)
+            {
+                try
+                {
+                    CurrentLocation = await Geolocation.GetLastKnownLocationAsync();
+                    if (CurrentLocation == null)
+                    {
+                        return;
+                    }
+                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(new Position(CurrentLocation.Latitude, CurrentLocation.Longitude), Distance.FromKilometers(0.444));
+                    map.MoveToRegion(mapSpan);
+                }
+                catch (Exception)
+                {
 
-           
+                    CurrentLocation = await Geolocation.GetLocationAsync();
+                    MapSpan mapSpan = MapSpan.FromCenterAndRadius(new Position(CurrentLocation.Latitude, CurrentLocation.Longitude), Distance.FromKilometers(0.444));
+                    map.MoveToRegion(mapSpan);
+                }
+                finally
+                {
+
+                }
+
+
+            }
+            else
+                await DisplayAlert("Error!!", "Kindly Enable Location from your settings to use this feature", "OK");
 
 
         }
